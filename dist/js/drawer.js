@@ -71,7 +71,7 @@
           });
 
           $(window).on('resize.' + namespace, function close() {
-            __.close.call(_this);
+            $(".drawer-overlay").addClass("overlay-on");
             return _this.iScroll.refresh();
           });
 

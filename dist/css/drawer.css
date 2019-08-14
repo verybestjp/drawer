@@ -73,6 +73,11 @@
   display: block;
 }
 
+.drawer-overlay.overlay-on,
+.drawer-open .drawer-overlay.overlay-on{
+  display: none;
+}
+
 /*!------------------------------------*\
     Top
 \*!------------------------------------*/
