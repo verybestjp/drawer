@@ -8,11 +8,7 @@
   display: block;
   box-sizing: content-box;
   width: var(--drawer-hamburger-width);
-  padding: 0;
-  padding-top: 18px;
-  padding-right: var(--drawer-gutter-x);
-  padding-bottom: 30px;
-  padding-left: var(--drawer-gutter-x);
+  padding: 12px 10px 24px;
   transition: all var(--drawer-transitionDuration) var(--drawer-transitionFunction);
   transform: translate3d(0, 0, 0);
   border: 0;
@@ -63,8 +59,10 @@
 
 .drawer-open .drawer-hamburger-icon:before {
   transform: rotate(45deg);
+  background-color: #fff;
 }
 
 .drawer-open .drawer-hamburger-icon:after {
   transform: rotate(-45deg);
+  background-color: #fff;
 }
