@@ -40,6 +40,11 @@
   padding: $drawer-gutter-x;
   text-decoration: none;
   color: $drawer-link-color;
+  border-bottom: 1px solid #eee;
+}
+
+.drawer-menu-item i {
+  margin-right:2px;
 }
 
 .drawer-menu-item:hover {

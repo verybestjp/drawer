@@ -31,24 +31,24 @@
   --drawer-brand-fontWeight: bold;
   --drawer-brand-color: var(--drawer-color);
 
-  --drawer-hamburger-color: var(--drawer-color);
+  --drawer-hamburger-color: #f69408;
   --drawer-hamburger-width: 2rem;
   --drawer-hamburger-bgColor: transparent;
   --drawer-hamburger-hover-bgColor: transparent;
 
-  --drawer-dropdown-color: var(--drawer-link-color);
+  --drawer-dropdown-color: #f69408;
   --drawer-dropdown-bgColor: var(--drawer-bgColor);
   --drawer-dropdown-hover-color: var(--drawer-hover-color);
   --drawer-dropdown-hover-bgColor: transparent;
 
   --drawer-pageContents-bgColor: #fff;
-  --drawer-overlay-bgColor: rgba(0, 0, 0, .2);
+  --drawer-overlay-bgColor: rgba(0, 0, 0, .4);
 
-  --drawer-overlay-zIndex: 100;
-  --drawer-nav-zIndex: calc(var(--drawer-overlay-zIndex) + 1);
-  --drawer-navbar-zIndex: calc(var(--drawer-overlay-zIndex) + 2);
-  --drawer-brand-zIndex: calc(var(--drawer-overlay-zIndex) + 3);
-  --drawer-hamburger-zIndex: calc(var(--drawer-overlay-zIndex) + 4);
+  --drawer-overlay-zIndex: 3;
+  --drawer-nav-zIndex: 5;
+  --drawer-navbar-zIndex: 4;
+  --drawer-navbar-header-zIndex: 3;
+  --drawer-hamburger-zIndex: 4;
 }
 
 @custom-media --drawer-viewport-sm (min-width: 40em);

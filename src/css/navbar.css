@@ -23,7 +23,7 @@
 
 .drawer-navbar-header {
   position: relative;
-  z-index: var(--drawer-navbar-zIndex);
+  z-index: var(--drawer-navbar-header-zIndex);
   box-sizing: border-box;
   width: 100%;
   height: var(--drawer-navbar-height);

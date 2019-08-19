@@ -16,7 +16,7 @@
 
 .drawer-nav {
   position: fixed;
-  z-index: 101;
+  z-index: 5;
   top: 0;
   overflow: hidden;
   width: 16.25rem;
@@ -48,6 +48,11 @@
   padding: .75rem;
   text-decoration: none;
   color: #222;
+  border-bottom: 1px solid #eee;
+}
+
+.drawer-menu-item i {
+  margin-right:2px;
 }
 
 .drawer-menu-item:hover {
@@ -60,13 +65,13 @@
 
 .drawer-overlay {
   position: fixed;
-  z-index: 100;
+  z-index: 3;
   top: 0;
   left: 0;
   display: none;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .2);
+  background-color: rgba(0, 0, 0, .4);
 }
 
 .drawer-open .drawer-overlay {
@@ -147,16 +152,12 @@
 
 .drawer-hamburger {
   position: fixed;
-  z-index: 104;
+  z-index: 4;
   top: 0;
   display: block;
   box-sizing: content-box;
   width: 2rem;
-  padding: 0;
-  padding-top: 18px;
-  padding-right: .75rem;
-  padding-bottom: 30px;
-  padding-left: .75rem;
+  padding: 12px 10px 24px;
   -webkit-transition: all .6s cubic-bezier(0.190, 1.000, 0.220, 1.000);
   transition: all .6s cubic-bezier(0.190, 1.000, 0.220, 1.000);
   -webkit-transform: translate3d(0, 0, 0);
@@ -184,7 +185,7 @@
   height: 2px;
   -webkit-transition: all .6s cubic-bezier(0.190, 1.000, 0.220, 1.000);
   transition: all .6s cubic-bezier(0.190, 1.000, 0.220, 1.000);
-  background-color: #222;
+  background-color: #f69408;
 }
 
 .drawer-hamburger-icon:before,
@@ -211,11 +212,13 @@
 .drawer-open .drawer-hamburger-icon:before {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
+  background-color: #fff;
 }
 
 .drawer-open .drawer-hamburger-icon:after {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
+  background-color: #fff;
 }
 
 /*!------------------------------------*\
@@ -340,7 +343,7 @@
 }
 
 .drawer-navbar {
-  z-index: 102;
+  z-index: 4;
   top: 0;
   width: 100%;
 }
@@ -353,7 +356,7 @@
 
 .drawer-navbar-header {
   position: relative;
-  z-index: 102;
+  z-index: 3;
   box-sizing: border-box;
   width: 100%;
   height: 3.75rem;
@@ -467,7 +470,7 @@
   padding-right: .75rem;
   padding-left: 1.5rem;
   text-decoration: none;
-  color: #222;
+  color: #f69408;
 }
 
 .drawer-dropdown-menu-item:hover {
