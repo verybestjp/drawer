@@ -35,12 +35,11 @@ $drawer-dropdown-hover-color: $drawer-hover-color !default;
 $drawer-dropdown-hover-bgColor: transparent !default;
 $drawer-pageContents-bgColor: #fff !default;
 $drawer-overlay-bgColor: rgba(0, 0, 0, .4) !default;
-$drawer-overlay-zIndex: 100 !default;
-$drawer-nav-zIndex: ($drawer-overlay-zIndex + 2) !default;
-$drawer-navbar-zIndex: ($drawer-overlay-zIndex + 1) !default;
-$drawer-navbar-header-zIndex: ($drawer-overlay-zIndex + 0) !default;
-$drawer-brand-zIndex: ($drawer-overlay-zIndex + 3) !default;
-$drawer-hamburger-zIndex: ($drawer-overlay-zIndex + 1) !default;
+$drawer-overlay-zIndex: 3 !default;
+$drawer-nav-zIndex: 5 !default;
+$drawer-navbar-zIndex: 4 !default;
+$drawer-navbar-header-zIndex: 3 !default;
+$drawer-hamburger-zIndex: 4 !default;
 
 
 

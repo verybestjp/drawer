@@ -56,7 +56,7 @@ gulp.task('css', ['cssscss'], function () {
     .pipe(header(banner, { pkg: pkg }))
     .pipe(gulp.dest(dirs.dist + '/css'))
     .pipe(postcss([
-      cssnano({ discardComments: { removeAll: true } })
+      cssnano({ discardComments: { removeAll: true }, zindex: false })
     ]))
     .pipe(header(banner, { pkg: pkg }))
     .pipe(rename({ suffix: '.min' }))
