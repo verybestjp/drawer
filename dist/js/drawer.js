@@ -7,21 +7,15 @@
  */
 
 ;(function umd(factory) {
-  'use strict';
-  if (typeof define === 'function' && define.amd) {
-    define(['jquery'], factory);
-  } else if (typeof exports === 'object') {
-    module.exports = factory(require('jquery'));
-  } else {
-    factory(jQuery);
-  }
+  factory(angular.element);
 }(function Drawer($) {
   'use strict';
   var namespace = 'drawer';
   var touches = typeof document.ontouchstart != 'undefined';
+  var handler = {};
   var __ = {
     init: function init(options) {
-      options = $.extend({
+      options = angular.extend({
         iscroll: {
           mouseWheel: true,
           preventDefault: false
@@ -32,8 +26,8 @@
       __.settings = {
         state: false,
         events: {
-          opened: 'drawer.opened',
-          closed: 'drawer.closed'
+          opened: 'drawer_opened',
+          closed: 'drawer_closed'
         },
         dropdownEvents: {
           opened: 'shown.bs.dropdown',
@@ -41,7 +35,7 @@
         }
       };
 
-      __.settings.class = $.extend({
+      __.settings.class = angular.extend({
         nav: 'drawer-nav',
         toggle: 'drawer-toggle',
         overlay: 'drawer-overlay',
@@ -50,13 +44,13 @@
         dropdown: 'drawer-dropdown'
       }, options.class);
 
-      return this.each(function instantiateDrawer() {
-        var _this = this;
-        var $this = $(this);
+      return angular.forEach($(this), function instantiateDrawer(elemIt) {
+        var _this = elemIt;
+        var $this = $(elemIt);
         var data = $this.data(namespace);
 
         if (!data) {
-          options = $.extend({}, options);
+          options = angular.extend({}, options);
           $this.data(namespace, { options: options });
 
           __.refresh.call(_this);
@@ -65,18 +59,21 @@
             __.addOverlay.call(_this);
           }
 
-          $('.' + __.settings.class.toggle).on('click.' + namespace, function toggle() {
+          $(document.querySelector('.' + __.settings.class.toggle)).on('click', handler.click = function toggle() {
             __.toggle.call(_this);
             return _this.iScroll.refresh();
           });
 
-          $(window).on('resize.' + namespace, function close() {
+          $(window).on('resize', handler.resize = function close() {
             $(".drawer-overlay").addClass("overlay-on");
             return _this.iScroll.refresh();
           });
 
-          $('.' + __.settings.class.dropdown)
-            .on(__.settings.dropdownEvents.opened + ' ' + __.settings.dropdownEvents.closed, function onOpenedOrClosed() {
+          $(document.querySelector('.' + __.settings.class.dropdown))
+            .on(__.settings.dropdownEvents.opened, function onOpenedOrClosed() {
+              return _this.iScroll.refresh();
+            })
+            .on(__.settings.dropdownEvents.closed, function onOpenedOrClosed() {
               return _this.iScroll.refresh();
             });
         }
@@ -112,7 +109,7 @@
       var $this = $(this);
 
       if (touches) {
-        $this.on('touchmove.' + namespace, function disableTouch(event) {
+        $this.on('touchmove', handler.touchmove = function disableTouch(event) {
           event.preventDefault();
         });
       }
@@ -122,31 +119,32 @@
         .addClass(__.settings.class.open)
         .drawerCallback(function triggerOpenedListeners() {
           __.settings.state = true;
-          $this.trigger(__.settings.events.opened);
+          $this.triggerHandler(__.settings.events.opened);
         });
     },
 
     close: function close() {
       var $this = $(this);
 
-      if (touches) $this.off('touchmove.' + namespace);
+      if (touches) $this.off('touchmove', handler.touchmove);
 
       return $this
         .removeClass(__.settings.class.open)
         .addClass(__.settings.class.close)
         .drawerCallback(function triggerClosedListeners() {
           __.settings.state = false;
-          $this.trigger(__.settings.events.closed);
+          $this.triggerHandler(__.settings.events.closed);
         });
     },
 
     destroy: function destroy() {
-      return this.each(function destroyEach() {
-        var _this = this;
-        var $this = $(this);
-        $('.' + __.settings.class.toggle).off('click.' + namespace);
-        $(window).off('resize.' + namespace);
-        $('.' + __.settings.class.dropdown).off(__.settings.dropdownEvents.opened + ' ' + __.settings.dropdownEvents.closed);
+      return angular.forEach($(this),function destroyEach(elemIt) {
+        var _this = elemIt;
+        var $this = $(elemIt);
+        $(document.querySelector('.' + __.settings.class.toggle)).off('click', handler.click);
+        $(window).off('resize', handler.resize);
+        $(document.querySelector('.' + __.settings.class.dropdown)).off(__.settings.dropdownEvents.opened);
+        $(document.querySelector('.' + __.settings.class.dropdown)).off(__.settings.dropdownEvents.closed);
         _this.iScroll.destroy();
         $this
           .removeData(namespace)
@@ -157,24 +155,27 @@
 
   };
 
-  $.fn.drawerCallback = function drawerCallback(callback) {
-    var end = 'transitionend webkitTransitionEnd';
-    return this.each(function setAnimationEndHandler() {
-      var $this = $(this);
-      $this.on(end, function invokeCallbackOnAnimationEnd() {
-        $this.off(end);
-        return callback.call(this);
+  angular.element.prototype.drawerCallback = function drawerCallback(callback) {
+    return angular.forEach($(this), function setAnimationEndHandler(elemIt) {
+      var $this = $(elemIt);
+      $this.on('transitionend', function invokeCallbackOnAnimationEnd() {
+        $this.off('transitionend');
+        return callback.call(elemIt);
+      });
+      $this.on('webkitTransitionEnd', function invokeCallbackOnAnimationEnd() {
+        $this.off('webkitTransitionEnd');
+        return callback.call(elemIt);
       });
     });
   };
 
-  $.fn.drawer = function drawer(method) {
+  angular.element.prototype.drawer = function drawer(method) {
     if (__[method]) {
       return __[method].apply(this, Array.prototype.slice.call(arguments, 1));
     } else if (typeof method === 'object' || !method) {
       return __.init.apply(this, arguments);
     } else {
-      $.error('Method ' + method + ' does not exist on jQuery.' + namespace);
+      throw new Error('Method ' + method + ' does not exist on jQuery.' + namespace);
     }
   };
 
