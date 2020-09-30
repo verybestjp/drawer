@@ -65,7 +65,7 @@
           });
 
           $(window).on('resize', handler.resize = function close() {
-            $(".drawer-overlay").addClass("overlay-on");
+            $(document.querySelector(".drawer-overlay")).addClass("overlay-on");
             return _this.iScroll.refresh();
           });
 
