@@ -15,3 +15,9 @@
 .drawer--right.drawer-open .drawer-hamburger {
   right: var(--drawer-width);
 }
+/* https://qiita.com/mnbdyunan/items/97ddb59fb12a404a9339 */
+.drawer--right.drawer-open .drawer-nav {
+  right: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}

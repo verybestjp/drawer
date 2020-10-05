@@ -17,7 +17,8 @@
     init: function init(options) {
       options = angular.extend({
         iscroll: {
-          mouseWheel: true,
+          // nav menu scrollable
+          mouseWheel: false,
           preventDefault: false
         },
         showOverlay: true

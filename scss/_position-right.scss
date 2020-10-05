@@ -15,3 +15,8 @@
 .drawer--right.drawer-open .drawer-hamburger {
   right: $drawer-width;
 }
+.drawer--right.drawer-open .drawer-nav {
+  right: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
